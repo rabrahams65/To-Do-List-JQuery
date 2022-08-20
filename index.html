@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="eng" dir="ltr"
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style media="screen">
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing:
+            border-box;
+            letter-spacing: 1px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+            text-transform: capitalize;
+        }
+        body {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgb(19, 19, 19);
+        }
+
+        .container{
+            height: 450px;
+            width: 330px;
+            background: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0px 100px rgb(95, 137, 255);
+            padding: 10px;
+            overflow-y: auto;
+        }
+
+        #input{
+            height: 50px;
+            width: 100%;
+            outline: none;
+            border: none;
+            border-radius: 5px;
+            background: #666;
+            color: #fff;
+            padding: 0 10px;
+            margin: 15px 0;
+        }
+
+        #input::placeholder{
+            color: #bbb;
+        }
+
+        ul li{
+            background: rgb(231, 231, 231);
+            color: #333;
+            height: 40px;
+            border-radius: 50px;
+            margin: 10px 0;
+            padding: 10px;
+            position: relative;
+        }
+
+        ul .fa-check, .fa-trash{
+            position: absolute;
+            cursor: pointer;
+        }
+
+        ul .fa-check{
+            right: 40px;
+            color: green;
+        }
+
+        ul .fa-trash{
+            right: 15px;
+            color: red;
+        }
+
+        ul .checked{
+            background: lightgreen;
+            text-decoration: line-through;
+            transition: .2s;
+        }
+
+        #btnAddToList{
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid grey;
+            cursor: pointer;
+        }
+
+        #btnAddToList:hover{
+            background-color: rgb(9, 49, 82);
+            color: #fff;
+        }
+
+    </style>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+</head>
+
+<body>
+
+    <div class="container">
+        <input type="text" id="input" placeholder="Add items here">
+        <button type="button" id="btnAddToList">Add</button>
+        <ul></ul>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('#input').change(function(){
+                var input = $(this).val();
+                $('ul').append('<li>' + input + ' <i class="fas fa-check"></i> <i class="fas fa-trash"></i> </li>')
+                $(this).val('')
+            });
+        });
+
+        $('button').on('click','#btnAddToList', function(){
+            $('ul').append('<li>' + input + ' <i class="fas fa-check"></i> <i class="fas fa-trash"></i> </li>')
+        });
+
+        $('ul').on('click','.fa-trash', function(){
+            $(this).parent('li').fadeOut(200);
+        });
+
+        $('ul').on('click','.fa-check', function(){
+            $(this).parent('li').toggleClass('checked');
+        });
+
+    </script>
+
+</body>
